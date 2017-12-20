@@ -61,6 +61,7 @@ typedef struct instruction_s
  |  FUNCTION PROTOTYPES  |
  *************************/
 
+void (*op(char *opcode))(stack_t **, unsigned int);
 void push(stack_t **, unsigned int);
 void pull(stack_t **, unsigned int);
 

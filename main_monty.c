@@ -10,13 +10,17 @@
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
+	line_number++; /* WHAT TO DO WITH THIS? */
 
 	if (stack == NULL)
-		return (NULL);
+		return;
 
 	temp = malloc(sizeof(stack_t));
 	if (temp == NULL)
-		return (NULL);
+	{
+		free(temp);
+		return;
+	}
 
 	temp->n = 5;
 	temp->prev = NULL;
@@ -24,7 +28,7 @@ void push(stack_t **stack, unsigned int line_number)
 
 	*stack = temp;
 	if ((*stack)->next != NULL)
-		temp->next->prev = *stack
+		temp->next->prev = *stack;
 }
 
 /**
@@ -37,6 +41,7 @@ void push(stack_t **stack, unsigned int line_number)
 void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
+	line_number++; /* WHAT TO DO WITH THIS? */
 
 	while (temp != NULL)
 	{
@@ -52,7 +57,7 @@ void pall(stack_t **stack, unsigned int line_number)
  *
  * Return: a pointer to a function that takes a stack and line# and returns vd
  */
-void (*op(char *opcode))(stack_t, unsigned int)
+void (*op(char *opcode))(stack_t **, unsigned int)
 {
 	instruction_t instructions[] = {
 		{"push", push},
@@ -81,13 +86,16 @@ int main(int argc, char *argv[])
 	/* initialize the file */
 	FILE *file_to_read = NULL;
 
-	char **buffer = NULL;
-	size_t *buffer_size = 0;
+	char *buffer = NULL;
+	size_t buffer_size = 0;
 
-	int index;
-	int token_count;
+//	int index;
+//	int token_count;
 	char *delimiters = "\n \t";
 	char *opcode = NULL;
+	char *first_argument = NULL;
+//	int n_arguments = 2;
+	ssize_t n_characters_read;
 
 	/* check if argument count is correct (CAN BE PORTED TO ERROR FUNC) */
 	if (argc != 2)
@@ -105,22 +113,27 @@ int main(int argc, char *argv[])
 	}
 
 	// read and parse the file
-	n_arguments = 2;
-	n_characters_read = getline(buffer, buffer_size, file_to_read);
+//	n_arguments = 2;
+	n_characters_read = getline(&buffer, &buffer_size, file_to_read);
 	if (n_characters_read == -1)
 	{
-		printf("Error: Unable to read line\m");
+		printf("Error: Unable to read line\n");
 		exit(EXIT_FAILURE);
 	}
 	opcode = strtok(buffer, delimiters);
 	if (opcode == NULL)
 	{
 		printf("L<line_number>: unknown instruction <opcode>\n");
-		exit(EXIT_FAILURE)
+		exit(EXIT_FAILURE);
 	}
+	first_argument = strtok(NULL, delimiters);
 	// go to the next line
-	first_argument = atoi(strtok(NULL, delimiters));
+	printf("%s %s\n", opcode, first_argument);
+//	first_argument = atoi(strtok(NULL, delimiters));
 
 	/* exit stage right */
 	return (0);
 }
+
+/* convert all ints to unsigned if its not necessary to have negatives */
+/* review variable names */
