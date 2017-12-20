@@ -31,8 +31,6 @@ void push(stack_t **stack, unsigned int line_number)
 	*stack = temp;
 	if ((*stack)->next != NULL)
 		temp->next->prev = *stack;
-
-//	printf("pushed %d (in func)\n", temp->n);
 }
 
 /**
@@ -54,30 +52,6 @@ void pall(stack_t **stack, unsigned int line_number)
 	}
 }
 
-
-/**
- * op - chooses the appropriate operation based on the opcode
- * @opcode: the operation code
- *
- * Return: a pointer to a function that takes a stack and line# and returns vd
- */
-void (*op(char *opcode))(stack_t **, unsigned int)
-{
-	instruction_t instructions[] = {
-		{"push", push},
-		{"pall", pall},
-		{NULL, NULL}
-	};
-	int index;
-
-	for (index = 0; instructions[index].opcode != NULL; index++)
-		if (strcmp(instructions[index].opcode, opcode) == 0)
-			return (instructions[index].f);
-	return (instructions[index].f);
-}
-
-
-
 /**
  * main - controls the program flow for monty
  * @argc: the number of arugments
@@ -87,7 +61,6 @@ void (*op(char *opcode))(stack_t **, unsigned int)
  */
 int main(int argc, char *argv[])
 {
-	/* initialize the file */
 	FILE *file_to_read = NULL;
 
 	char *buffer = NULL;
@@ -95,11 +68,10 @@ int main(int argc, char *argv[])
 
 	stack_t *top;
 
-//	int index;
+	int i; /* index */
 	char *delimiters = "\n \t";
 	char *opcode = NULL;
-	char *first_argument = NULL;
-//	int n_arguments = 2;
+	char *arg_one = NULL;
 	ssize_t n_characters_read = 1;
 	void (*f)(stack_t **, unsigned int);
 	unsigned int line_number = 0;
@@ -118,15 +90,13 @@ int main(int argc, char *argv[])
 		printf("Error: Can't open file <file>\n"); /* PRINT FILE NAME */
 		exit(EXIT_FAILURE);
 	}
-
 	// create the stack
 	top = NULL;
 
 	// read and parse the file
-	while (n_characters_read != -1)
+	while (getline(&buffer, &buffer_size, file_to_read) != -1)
 	{
 		line_number++;
-		n_characters_read = getline(&buffer, &buffer_size, file_to_read);
 		if (n_characters_read == -1)
 		{
 			printf("Error: Unable to read line\n");
@@ -138,25 +108,32 @@ int main(int argc, char *argv[])
 		f = op(opcode);
 		if (f == NULL)
 		{
-			printf("L%d: unknown instruction %s\n", line_number, opcode);
+			printf("L%d: ", line_number);
+			printf("unknown instruction %s\n", opcode);
 			exit(EXIT_FAILURE);
 		}
-		first_argument = strtok(NULL, delimiters);
-		if (first_argument == NULL)
+
+		if (strcmp(opcode, "push") == 0)
+			arg_one = strtok(NULL, delimiters);
+		if (arg_one == NULL)
 			daata = 0;
 		else
-			daata = atoi(first_argument);
-//		printf("%s %i\n", opcode, daata);
+		{
+			for (i = 0; arg_one[i] != '\0'; i++)
+			{
+				if (isdigit(arg_one[i]) == 0)
+				{
+					printf("L%d: ", line_number);
+					printf("usage: push integer\n");
+					exit(EXIT_FAILURE);
+				}
+			}
+			daata = atoi(arg_one);
+		}
 		f(&top, line_number);
 	}
 
-
-
-	// go to the next line
-//	first_argument = atoi(strtok(NULL, delimiters));
-
-	/* exit stage right */
-	return (0);
+	return (0); /* exit stage right */
 }
 
 /* convert all ints to unsigned if its not necessary to have negatives */

@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
+#include <ctype.h>
 
 /****************
  |  STRUCTURES  |
@@ -59,7 +59,7 @@ extern int daata;
 
 void (*op(char *opcode))(stack_t **, unsigned int);
 void push(stack_t **, unsigned int);
-void pull(stack_t **, unsigned int);
+void pall(stack_t **, unsigned int);
 
 
 #endif /* _MONTY_H_ */
