@@ -4,6 +4,16 @@
 
 
 /****************
+ |  DIRECTIVES  |
+ ****************/
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+
+
+/****************
  |  STRUCTURES  |
  ****************/
 
@@ -16,7 +26,7 @@
  * Description: doubly linked list node structure for
  *              stack, queues, LIFO, FIFO Holberton project
  */
-typeddef struct stack_s
+typedef struct stack_s
 {
 	int n;
 	struct stack_s *prev;
@@ -39,11 +49,20 @@ typedef struct instruction_s
 
 
 
+/**********************
+ |  GLOBAL VARIABLES  |
+ **********************/
+
+/* global variables go here */
+
+
+
 /*************************
  |  FUNCTION PROTOTYPES  |
  *************************/
 
-/* function prototypes go here */
+void push(stack_t **, unsigned int);
+void pull(stack_t **, unsigned int);
 
 
 
