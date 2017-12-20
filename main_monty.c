@@ -1,5 +1,7 @@
 #include "monty.h"
 
+int daata = 0;
+
 /**
  * push - pushes a piece of data to the top of the stack
  * @stack: a pointer to a pointer to a doubly linked list (stack)
@@ -22,13 +24,15 @@ void push(stack_t **stack, unsigned int line_number)
 		return;
 	}
 
-	temp->n = 5;
+	temp->n = daata;
 	temp->prev = NULL;
 	temp->next = *stack;
 
 	*stack = temp;
 	if ((*stack)->next != NULL)
 		temp->next->prev = *stack;
+
+//	printf("pushed %d (in func)\n", temp->n);
 }
 
 /**
@@ -89,13 +93,16 @@ int main(int argc, char *argv[])
 	char *buffer = NULL;
 	size_t buffer_size = 0;
 
+	stack_t *top;
+
 //	int index;
-//	int token_count;
 	char *delimiters = "\n \t";
 	char *opcode = NULL;
 	char *first_argument = NULL;
 //	int n_arguments = 2;
-	ssize_t n_characters_read;
+	ssize_t n_characters_read = 1;
+	void (*f)(stack_t **, unsigned int);
+	unsigned int line_number = 0;
 
 	/* check if argument count is correct (CAN BE PORTED TO ERROR FUNC) */
 	if (argc != 2)
@@ -112,23 +119,40 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
+	// create the stack
+	top = NULL;
+
 	// read and parse the file
-//	n_arguments = 2;
-	n_characters_read = getline(&buffer, &buffer_size, file_to_read);
-	if (n_characters_read == -1)
+	while (n_characters_read != -1)
 	{
-		printf("Error: Unable to read line\n");
-		exit(EXIT_FAILURE);
+		line_number++;
+		n_characters_read = getline(&buffer, &buffer_size, file_to_read);
+		if (n_characters_read == -1)
+		{
+			printf("Error: Unable to read line\n");
+			exit(EXIT_FAILURE);
+		}
+
+		/* select the proper operation(s) */
+		opcode = strtok(buffer, delimiters);
+		f = op(opcode);
+		if (f == NULL)
+		{
+			printf("L%d: unknown instruction %s\n", line_number, opcode);
+			exit(EXIT_FAILURE);
+		}
+		first_argument = strtok(NULL, delimiters);
+		if (first_argument == NULL)
+			daata = 0;
+		else
+			daata = atoi(first_argument);
+//		printf("%s %i\n", opcode, daata);
+		f(&top, line_number);
 	}
-	opcode = strtok(buffer, delimiters);
-	if (opcode == NULL)
-	{
-		printf("L<line_number>: unknown instruction <opcode>\n");
-		exit(EXIT_FAILURE);
-	}
-	first_argument = strtok(NULL, delimiters);
+
+
+
 	// go to the next line
-	printf("%s %s\n", opcode, first_argument);
 //	first_argument = atoi(strtok(NULL, delimiters));
 
 	/* exit stage right */

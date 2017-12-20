@@ -2,7 +2,6 @@
 #define _MONTY_H_
 
 
-
 /****************
  |  DIRECTIVES  |
  ****************/
@@ -10,7 +9,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
 
 
 /****************
@@ -48,13 +46,11 @@ typedef struct instruction_s
 } instruction_t;
 
 
-
 /**********************
  |  GLOBAL VARIABLES  |
  **********************/
 
-/* global variables go here */
-
+extern int daata;
 
 
 /*************************
@@ -64,7 +60,6 @@ typedef struct instruction_s
 void (*op(char *opcode))(stack_t **, unsigned int);
 void push(stack_t **, unsigned int);
 void pull(stack_t **, unsigned int);
-
 
 
 #endif /* _MONTY_H_ */
