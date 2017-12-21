@@ -45,6 +45,14 @@ void handleError(unsigned int error_code)
 		fclose(var->file_address);
 	}
 
+	/* unable to pint */
+	if (error_code == 700)
+	{
+		printf("L%d: can't pint, stack empty\n", var->line_number);
+		free(var->buffer);
+		fclose(var->file_address);
+	}
+
 	exit(EXIT_FAILURE);
 }
 

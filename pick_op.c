@@ -11,6 +11,7 @@ void (*op(char *opcode))(stack_t **, unsigned int)
         instruction_t instructions[] = {
                 {"push", push},
                 {"pall", pall},
+		{"pint", pint},
                 {NULL, NULL}
         };
         int index;

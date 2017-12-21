@@ -46,3 +46,20 @@ void pall(stack_t **stack, unsigned int line_number)
                 temp = temp->next;
         }
 }
+
+/**
+ * pint - prints the value at the top of the stack
+ * @stack: a pointer to a pointer to a doubly linked list (stack)
+ * @line_number: the number of the line at which pall was called
+ *
+ * Return: void
+ */
+void pint(stack_t **stack, unsigned int line_number)
+{
+	(void) line_number;
+	(void) stack;
+
+	if (var->top == NULL)
+		handleError(700);
+	printf("%d\n", var->top->n);
+}
