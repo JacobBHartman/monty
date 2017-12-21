@@ -87,7 +87,7 @@ File | Description
 `stack.c` | manipulates the stack
 
 ## styling guide
- * `Betty` `Betty` [styling](https://github.com/holbertonschool/Betty/wiki)
+ * `Betty` [styling](https://github.com/holbertonschool/Betty/wiki)
  * variables should be descriptive but not so long that they make the code unreadable
  * function names should usually follow the format of verbObject
  * loop-index variables and function pointers can be one letter
