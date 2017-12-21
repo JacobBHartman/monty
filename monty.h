@@ -55,7 +55,7 @@ typedef struct variable_s
 {
 	char *file_name;
 	FILE *file_address;
-	unsigned int line_number;
+	unsigned int line_num;
 	char *opcode;
 	int daata;
 	stack_t *top;

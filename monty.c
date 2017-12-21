@@ -10,74 +10,35 @@ var_t *var;
  */
 void handleError(unsigned int error_code)
 {
-	/* improper usage from command line */
-	if (error_code == 200)
+	if (error_code == 200) /* improper usage from command line */
 		printf("USAGE: monty file\n");
-
-	/* unable to open the file */
-	if (error_code == 300)
+	if (error_code == 300) /* unable to open the file */
 		printf("Error: Can't open file %s\n", var->file_name);
-
-	/* unable to malloc */
-	if (error_code == 400)
+	if (error_code == 400) /* unable to malloc */
+		printf("Error: malloc failed\n");
+	if (error_code == 500) /* improper usage of push */
+		printf("L%d: usage: push integer\n", var->line_num);
+	if (error_code == 600) /* unknown instruction */
 	{
-                printf("Error: malloc failed\n");
-		freeStack(var->top);
-		/* FREE OTHER STUFF? */
-        }
-
-	/* improper usage of push */
-	if (error_code == 500)
-	{
-		printf("L%d: usage: push integer\n", var->line_number);
-		freeStack(var->top);
-		fclose(var->file_address);
-		free(var->buffer);
-	}
-
-	/* unknown instruction */
-	if (error_code == 600)
-	{
-		printf("L%d: unknown ", var->line_number);
+		printf("L%d: unknown ", var->line_num);
 		printf("instruction %s\n", var->opcode);
+	}
+	if (error_code == 700) /* unable to pint */
+		printf("L%d: can't pint, stack empty\n", var->line_num);
+	if (error_code == 800) /* unable to pop */
+		printf("L%d: can't pop an empty stack\n", var->line_num);
+	if (error_code == 900)	/* unable to swap */
+		printf("L%d: can't swap, stack too short\n", var->line_num);
+	if (error_code == 1000) /* unable to add */
+		printf("L%d: can't add, stack too short\n", var->line_num);
+
+	if (var->top != NULL)
 		freeStack(var->top);
+	if (var->buffer != NULL)
 		free(var->buffer);
+	if (var->file_address != NULL)
 		fclose(var->file_address);
-	}
 
-	/* unable to pint */
-	if (error_code == 700)
-	{
-		printf("L%d: can't pint, stack empty\n", var->line_number);
-		free(var->buffer);
-		fclose(var->file_address);
-	}
-
-	/* unable to pop */
-	if (error_code == 800)
-	{
-		printf("L%d: can't pop an empty stack\n", var->line_number);
-		free(var->buffer);
-		fclose(var->file_address);
-	}
-
-	/* unable to swap */
-	if (error_code == 900)
-	{
-		printf("L%d: can't swap, stack too short\n", var->line_number);
-		freeStack(var->top);
-		free(var->buffer);
-		fclose(var->file_address);
-	}
-
-	/* unable to add */
-	if (error_code == 1000)
-	{
-		printf("L%d: can't add, stack too short\n", var->line_number);
-		freeStack(var->top);
-		free(var->buffer);
-		fclose(var->file_address);
-	}
 	exit(EXIT_FAILURE);
 }
 
@@ -113,7 +74,7 @@ int main(int argc, char *argv[])
 	buffer_size = 0;
 	while (getline(&var->buffer, &buffer_size, var->file_address) != -1)
 	{
-		var->line_number++;
+		var->line_num++;
 
 		/* select the proper operation(s) */
 		var->opcode = strtok(var->buffer, delimiters);
@@ -136,7 +97,7 @@ int main(int argc, char *argv[])
 					handleError(500);
 			var->daata = atoi(arg_one);
 		}
-		f(&var->top, var->line_number);
+		f(&var->top, var->line_num);
 	}
 
 	free(var->buffer);
