@@ -1,11 +1,9 @@
 #ifndef _MONTY_H_
 #define _MONTY_H_
 
-
 /****************
  |  DIRECTIVES  |
  ****************/
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -15,7 +13,6 @@
 /****************
  |  STRUCTURES  |
  ****************/
-
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -50,7 +47,6 @@ typedef struct instruction_s
 /**********************
  |  GLOBAL VARIABLES  |
  **********************/
-
 typedef struct variable_s
 {
 	char *file_name;
@@ -68,7 +64,7 @@ extern var_t *var;
 /*************************
  |  FUNCTION PROTOTYPES  |
  *************************/
-
+void parseMontyFile(void);
 
 void (*op(char *opcode))(stack_t **, unsigned int);
 
@@ -82,6 +78,7 @@ void nop(stack_t **, unsigned int);
 
 void add(stack_t **, unsigned int);
 
+void cleanFreeAndClose(void);
 void freeStack(stack_t *top);
 void handleError(unsigned int error_code);
 
