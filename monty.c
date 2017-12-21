@@ -53,6 +53,14 @@ void handleError(unsigned int error_code)
 		fclose(var->file_address);
 	}
 
+	/* unable to pop */
+	if (error_code == 800)
+	{
+		printf("L%d: can't pop an empty stack\n", var->line_number);
+		free(var->buffer);
+		fclose(var->file_address);
+	}
+
 	exit(EXIT_FAILURE);
 }
 

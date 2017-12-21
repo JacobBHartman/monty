@@ -73,6 +73,7 @@ void (*op(char *opcode))(stack_t **, unsigned int);
 void push(stack_t **, unsigned int);
 void pall(stack_t **, unsigned int);
 void pint(stack_t **, unsigned int);
+void pop(stack_t **, unsigned int);
 void freeStack(stack_t *top);
 void handleError(unsigned int error_code);
 
