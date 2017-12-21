@@ -30,8 +30,9 @@
 
 ## Usage example
 ```
-dot_m_files  monty.c      montyfile.m~  ops_adv.c    ops_math.c  README.md
-monty        montyfile.m  monty.h       ops_basic.c  pick_op.c   stack.c
+vagrant@vagrant-ubuntu-trusty-64:~/monty$ ls
+dot_m_files  monty.c      monty.h    ops_basic.c  pick_op.c  stack.c
+monty        montyfile.m  ops_adv.c  ops_math.c   README.md
 vagrant@vagrant-ubuntu-trusty-64:~/monty$ cat montyfile.m | cat -e
 push 0$
 push 1$
@@ -78,11 +79,22 @@ vagrant@vagrant-ubuntu-trusty-64:~/monty$
 ---
 File | Description
 --- | ---
-
+`dot_m_files` | a directory containing monty files
+`README.md` | self-explanatory
+`monty.c` | main program flow and execution
+`monty.h` | header file for the program
+`montyfile.m` | test file used in above usage example
+`ops_adv.c` | relatively advanced operations: `swap`, `nop`
+`ops_basic.c` | relatively basic operations: `push`, `pall`, `pint`, `pop`
+`ops_math.c` | math-based operations: `add`
+`pick_op.c` | picks which operations will be ran
+`stack.c` | manipulates the stack
 
 ## styling guide
- * Betty
+ * `Betty` `Betty` [styling](https://github.com/holbertonschool/Betty/wiki)
  * variables should be descriptive but not so long that they make the code unreadable
  * function names should usually follow the format of verbObject
  * loop-index variables and function pointers can be one letter
 
+## Author(s)
+ * Jacob Hartman - github: `JacobBHartman`
