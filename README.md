@@ -5,13 +5,9 @@
  * Create a Monty file interpreter that takes in simple commands to manipulate a Stack data structure, from scratch
 
 ## Features
-- [x] push
-- [x] pall
-- [x] pint
-- [x] pop
-- [x] swap
+- [x] push, pall, pint, pop
+- [x] swap, nop
 - [x] add
-- [x] nop
 - [ ] sub, div, mul, mod
 - [ ] comments
 - [ ] pchar, pstr
