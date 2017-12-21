@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
 			arg_one = strtok(NULL, delimiters);
 			for (i = 0; arg_one[i] != '\0'; i++)
 			{
-				if (isdigit(arg_one[i]) == 0)
+				if (isdigit(arg_one[i]) == 0 && arg_one[i] != '-')
 				{
 					printf("L%d: ", line_number);
 					printf("usage: push integer\n");
