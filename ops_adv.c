@@ -29,3 +29,16 @@ void swap(stack_t **stack, unsigned int line_number)
 
 	var->top = temp;
 }
+
+/**
+ * nop - does nothing
+ * @stack: a pointer to a pointer to a doubly linked list (stack)
+ * @line_number: the line number at which nop was called
+ *
+ * Return: void
+ */
+void nop(stack_t **stack, unsigned int line_number)
+{
+	(void) stack;
+	(void) line_number;
+}

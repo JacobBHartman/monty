@@ -15,6 +15,7 @@ void (*op(char *opcode))(stack_t **, unsigned int)
 		{"pop", pop},
 		{"swap", swap},
 		{"add", add},
+		{"nop", nop},
                 {NULL, NULL}
         };
         int index;
