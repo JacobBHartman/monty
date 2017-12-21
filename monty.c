@@ -56,22 +56,19 @@ int main(int argc, char *argv[])
 	char *delimiters = "\n \t";
 	char *arg_one = NULL;
 	void (*f)(stack_t **, unsigned int);
-
 	var_t init = {NULL, NULL, 0, NULL, 0, NULL, NULL};
+
 	var = &init;
 	var->file_name = argv[1];
 
-	/* check for proper usage from command line */
-	if (argc != 2)
+	if (argc != 2) /* check for proper usage from command line */
 		handleError(200);
 
-	/* open the file and check if it was opened */
-	var->file_address = fopen(var->file_name, "r");
-	if (var->file_address == NULL)
+	var->file_address = fopen(var->file_name, "r"); /* open file */
+	if (var->file_address == NULL) /* check if it was opened */
 		handleError(300);
 
-	/* read and parse the file */
-	buffer_size = 0;
+	buffer_size = 0; /* read and parse the file */
 	while (getline(&var->buffer, &buffer_size, var->file_address) != -1)
 	{
 		var->line_num++;
