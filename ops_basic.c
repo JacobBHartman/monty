@@ -38,7 +38,7 @@ void push(stack_t **stack, unsigned int line_number)
 void pall(stack_t **stack, unsigned int line_number)
 {
         stack_t *temp = *stack;
-        line_number++; /* WHAT TO DO WITH THIS? */
+	(void) line_number;
 
         while (temp != NULL)
         {

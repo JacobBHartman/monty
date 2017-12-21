@@ -40,8 +40,11 @@ void handleError(unsigned int error_code)
 	{
 		printf("L%d: unknown ", var->line_number);
 		printf("instruction %s\n", var->opcode);
-		/* FREE STUFF HERE */
+		freeStack(var->top);
+		free(var->buffer);
+		fclose(var->file_address);
 	}
+
 	exit(EXIT_FAILURE);
 }
 
@@ -59,7 +62,6 @@ int main(int argc, char *argv[])
 	var->file_name = argv[1];
 
 	size_t buffer_size = 0;
-
 	int i; /* index */
 	char *delimiters = "\n \t";
 	char *arg_one = NULL;
@@ -89,8 +91,7 @@ int main(int argc, char *argv[])
 		f = op(var->opcode);
 		if (f == NULL)
 			handleError(600);
-		if (arg_one == NULL)
-			var->daata = 0;
+
 		if (strcmp(var->opcode, "push") == 0)
 		{
 			arg_one = strtok(NULL, delimiters);
@@ -103,6 +104,7 @@ int main(int argc, char *argv[])
 		}
 		f(&var->top, var->line_number);
 	}
+
 	free(var->buffer);
 	if (var->top != NULL)
 		freeStack(var->top);
