@@ -12,11 +12,11 @@
 - [x] swap
 - [x] add
 - [x] nop
-- [] sub, div, mul, mod
-- [] comments
-- [] pchar, pstr
-- [] rotl, rotr
-- [] stack, queue
+- [ ] sub, div, mul, mod
+- [ ] comments
+- [ ] pchar, pstr
+- [ ] rotl, rotr
+- [ ] stack, queue
 
 ## System and Environment
  * Compiler: `gcc 4.8.4`
