@@ -70,6 +70,14 @@ void handleError(unsigned int error_code)
 		fclose(var->file_address);
 	}
 
+	/* unable to add */
+	if (error_code == 1000)
+	{
+		printf("L%d: can't add, stack too short\n", var->line_number);
+		freeStack(var->top);
+		free(var->buffer);
+		fclose(var->file_address);
+	}
 	exit(EXIT_FAILURE);
 }
 
