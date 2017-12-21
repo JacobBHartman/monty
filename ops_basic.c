@@ -10,19 +10,16 @@
 void push(stack_t **stack, unsigned int line_number)
 {
         stack_t *temp;
-        line_number++; /* WHAT TO DO WITH THIS? */
+        (void) line_number;
 
         if (stack == NULL)
                 return;
 
         temp = malloc(sizeof(stack_t));
         if (temp == NULL)
-        {
-                free(temp);
-                return;
-        }
+		handleError(400);
 
-        temp->n = daata;
+        temp->n = var->daata;
         temp->prev = NULL;
         temp->next = *stack;
 

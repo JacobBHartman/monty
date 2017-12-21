@@ -6,7 +6,7 @@
  *
  * Return: void
  */
-void free_stack(stack_t *top)
+void freeStack(stack_t *top)
 {
 	stack_t *temp = top;
 

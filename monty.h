@@ -11,6 +11,7 @@
 #include <string.h>
 #include <ctype.h>
 
+
 /****************
  |  STRUCTURES  |
  ****************/
@@ -50,7 +51,18 @@ typedef struct instruction_s
  |  GLOBAL VARIABLES  |
  **********************/
 
-extern int daata;
+typedef struct variable_s
+{
+	char *file_name;
+	FILE *file_address;
+	unsigned int line_number;
+	char *opcode;
+	int daata;
+	stack_t *top;
+	char *buffer;
+} var_t;
+
+extern var_t *var;
 
 
 /*************************
@@ -60,6 +72,7 @@ extern int daata;
 void (*op(char *opcode))(stack_t **, unsigned int);
 void push(stack_t **, unsigned int);
 void pall(stack_t **, unsigned int);
-void free_stack(stack_t *top);
+void freeStack(stack_t *top);
+void handleError(unsigned int error_code);
 
 #endif /* _MONTY_H_ */

@@ -1,6 +1,49 @@
 #include "monty.h"
 
-int daata = 0;
+var_t *var;
+
+/**
+ * handleError - handles errors and exits
+ * @error_code - determines why the program was exited
+ *
+ * Return: void
+ */
+void handleError(unsigned int error_code)
+{
+	/* improper usage from command line */
+	if (error_code == 200)
+		printf("USAGE: monty file\n");
+
+	/* unable to open the file */
+	if (error_code == 300)
+		printf("Error: Can't open file %s\n", var->file_name);
+
+	/* unable to malloc */
+	if (error_code == 400)
+	{
+                printf("Error: malloc failed\n");
+		freeStack(var->top);
+		/* FREE OTHER STUFF? */
+        }
+
+	/* improper usage of push */
+	if (error_code == 500)
+	{
+		printf("L%d: usage: push integer\n", var->line_number);
+		freeStack(var->top);
+		fclose(var->file_address);
+		free(var->buffer);
+	}
+
+	/* unknown instruction */
+	if (error_code == 600)
+	{
+		printf("L%d: unknown ", var->line_number);
+		printf("instruction %s\n", var->opcode);
+		/* FREE STUFF HERE */
+	}
+	exit(EXIT_FAILURE);
+}
 
 /**
  * main - controls the program flow for monty
@@ -11,83 +54,62 @@ int daata = 0;
  */
 int main(int argc, char *argv[])
 {
-	FILE *file_to_read = NULL;
+	var_t init = {NULL, NULL, 0, NULL, 0, NULL, NULL};
+	var = &init;
+	var->file_name = argv[1];
 
-	char *buffer = NULL;
 	size_t buffer_size = 0;
-
-	stack_t *top;
 
 	int i; /* index */
 	char *delimiters = "\n \t";
-	char *opcode = NULL;
 	char *arg_one = NULL;
-	ssize_t n_characters_read = 1;
 	void (*f)(stack_t **, unsigned int);
-	unsigned int line_number = 0;
 
-	/* check if argument count is correct (CAN BE PORTED TO ERROR FUNC) */
+	/* check for proper usage from command line */
 	if (argc != 2)
-	{
-		printf("USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
+		handleError(200);
 
-	/* open the file and check if it was opened (CAN BE PORTED 2 ERRORFNC */
-	file_to_read = fopen(argv[1], "r");
-	if (file_to_read == NULL)
-	{
-		printf("Error: Can't open file <file>\n"); /* PRINT FILE NAME */
-		exit(EXIT_FAILURE);
-	}
-	/* create the stack */
-	top = NULL;
+	/* open the file and check if it was opened */
+	var->file_address = fopen(var->file_name, "r");
+	if (var->file_address == NULL)
+		handleError(300);
 
 	/* read and parse the file */
-	while (getline(&buffer, &buffer_size, file_to_read) != -1)
+	while (getline(&var->buffer, &buffer_size, var->file_address) != -1)
 	{
-		line_number++;
-		if (n_characters_read == -1)
-		{
-			printf("Error: Unable to read line\n");
-			exit(EXIT_FAILURE);
-		}
+		var->line_number++;
 
 		/* select the proper operation(s) */
-		opcode = strtok(buffer, delimiters);
+		var->opcode = strtok(var->buffer, delimiters);
 
-		if (opcode == NULL) /* checks for only spaces or newlines */
+		/* check for only spaces or newline */
+		if (var->opcode == NULL)
 			continue;
-		f = op(opcode);
+
+		f = op(var->opcode);
 		if (f == NULL)
-		{
-			printf("L%d: ", line_number);
-			printf("unknown instruction %s\n", opcode);
-			exit(EXIT_FAILURE);
-		}
+			handleError(600);
 		if (arg_one == NULL)
-			daata = 0;
-		if (strcmp(opcode, "push") == 0)
+			var->daata = 0;
+		if (strcmp(var->opcode, "push") == 0)
 		{
 			arg_one = strtok(NULL, delimiters);
+			if (arg_one == NULL)
+				handleError(500);
 			for (i = 0; arg_one[i] != '\0'; i++)
-			{
 				if (isdigit(arg_one[i]) == 0 && arg_one[i] != '-')
-				{
-					printf("L%d: ", line_number);
-					printf("usage: push integer\n");
-					exit(EXIT_FAILURE);
-				}
-			}
-			daata = atoi(arg_one);
+					handleError(500);
+			var->daata = atoi(arg_one);
 		}
-		f(&top, line_number);
+		f(&var->top, var->line_number);
 	}
-	free(buffer);
-	if (top != NULL)
-		free_stack(top);
-	fclose(file_to_read);
-	return (0); /* exit stage right */
+	free(var->buffer);
+	if (var->top != NULL)
+		freeStack(var->top);
+	fclose(var->file_address);
+
+	/* exit stage right */
+	return (0);
 }
 
 /* convert all ints to unsigned if its not necessary to have negatives */
