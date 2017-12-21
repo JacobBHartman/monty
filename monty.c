@@ -51,8 +51,8 @@ void handleError(unsigned int error_code)
  */
 int main(int argc, char *argv[])
 {
+	int i;
 	size_t buffer_size;
-	int i; /* index */
 	char *delimiters = "\n \t";
 	char *arg_one = NULL;
 	void (*f)(stack_t **, unsigned int);

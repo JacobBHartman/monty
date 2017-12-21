@@ -18,10 +18,10 @@ void (*op(char *opcode))(stack_t **, unsigned int)
 		{"nop", nop},
                 {NULL, NULL}
         };
-        int index;
+	int i;
 
-        for (index = 0; instructions[index].opcode != NULL; index++)
-                if (strcmp(instructions[index].opcode, opcode) == 0)
-                        return (instructions[index].f);
-        return (instructions[index].f);
+        for (i = 0; instructions[i].opcode != NULL; i++)
+                if (strcmp(instructions[i].opcode, opcode) == 0)
+                        return (instructions[i].f);
+        return (instructions[i].f);
 }
