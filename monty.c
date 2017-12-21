@@ -57,15 +57,15 @@ void handleError(unsigned int error_code)
  */
 int main(int argc, char *argv[])
 {
-	var_t init = {NULL, NULL, 0, NULL, 0, NULL, NULL};
-	var = &init;
-	var->file_name = argv[1];
-
-	size_t buffer_size = 0;
+	size_t buffer_size;
 	int i; /* index */
 	char *delimiters = "\n \t";
 	char *arg_one = NULL;
 	void (*f)(stack_t **, unsigned int);
+
+	var_t init = {NULL, NULL, 0, NULL, 0, NULL, NULL};
+	var = &init;
+	var->file_name = argv[1];
 
 	/* check for proper usage from command line */
 	if (argc != 2)
@@ -77,6 +77,7 @@ int main(int argc, char *argv[])
 		handleError(300);
 
 	/* read and parse the file */
+	buffer_size = 0;
 	while (getline(&var->buffer, &buffer_size, var->file_address) != -1)
 	{
 		var->line_number++;
