@@ -40,10 +40,10 @@ int main(int argc, char *argv[])
 		printf("Error: Can't open file <file>\n"); /* PRINT FILE NAME */
 		exit(EXIT_FAILURE);
 	}
-	// create the stack
+	/* create the stack */
 	top = NULL;
 
-	// read and parse the file
+	/* read and parse the file */
 	while (getline(&buffer, &buffer_size, file_to_read) != -1)
 	{
 		line_number++;
