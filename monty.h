@@ -60,6 +60,6 @@ extern int daata;
 void (*op(char *opcode))(stack_t **, unsigned int);
 void push(stack_t **, unsigned int);
 void pall(stack_t **, unsigned int);
-
+void free_stack(stack_t *top);
 
 #endif /* _MONTY_H_ */
