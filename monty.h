@@ -57,6 +57,7 @@ typedef struct instruction_s
  * @top: a stack (doubly linked list)
  * @buffer: a buffer that is being written to from each line in the file
  * @arg_one: the argument at index 1 (2nd argument, or the 1st after ./monty)
+ * @queue_mode: 1 is on, 1 is off
  *
  * Description: a structure that will hold global variables
  */
@@ -70,6 +71,7 @@ typedef struct variable_s
 	stack_t *top;
 	char *buffer;
 	char *arg_one;
+	unsigned int queue_mode;
 } var_t;
 
 extern var_t *var;
@@ -104,5 +106,8 @@ void rotateRight(stack_t **, unsigned int);
 void cleanFreeAndClose(void);
 void freeStack(stack_t *top);
 void handleError(unsigned int error_code);
+
+void onStack(stack_t **, unsigned int);
+void onQueue(stack_t **, unsigned int);
 
 #endif /* _MONTY_H_ */

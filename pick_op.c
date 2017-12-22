@@ -24,6 +24,8 @@ void (*op(char *opcode))(stack_t **, unsigned int)
 		{"pstr", pstr},
 		{"rotl", rotateLeft},
 		{"rotr", rotateRight},
+		{"stack", onStack},
+		{"queue", onQueue},
 		{NULL, NULL}
 	};
 	int i;

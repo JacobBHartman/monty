@@ -10,6 +10,7 @@
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
+	stack_t *temp_q;
 
 	(void) line_number;
 	if (stack == NULL)
@@ -20,12 +21,31 @@ void push(stack_t **stack, unsigned int line_number)
 		handleError(400);
 
 	temp->n = var->daata;
-	temp->prev = NULL;
-	temp->next = *stack;
+	if (var->top == NULL)
+	{
+		temp->prev = NULL;
+		temp->next = NULL;
+		var->top = temp;
+		return;
+	}
 
-	*stack = temp;
-	if ((*stack)->next != NULL)
-		temp->next->prev = *stack;
+	temp_q = var->top;
+	if (var->queue_mode == 0)
+	{
+		temp->prev = NULL;
+		temp->next = var->top;
+		var->top = temp;
+		if (var->top->next != NULL)
+			temp->next->prev = var->top;
+	}
+	else
+	{
+		temp->next = NULL;
+		while (temp_q->next != NULL)
+		       temp_q = temp_q->next;
+		temp->prev = temp_q;
+		temp_q->next = temp;
+	}
 }
 
 /**
