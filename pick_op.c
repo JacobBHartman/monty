@@ -23,6 +23,7 @@ void (*op(char *opcode))(stack_t **, unsigned int)
 		{"pchar", pchar},
 		{"pstr", pstr},
 		{"rotl", rotateLeft},
+		{"rotr", rotateRight},
 		{NULL, NULL}
 	};
 	int i;

@@ -99,6 +99,7 @@ void multiplyStack(stack_t **, unsigned int);
 void moduloStack(stack_t **, unsigned int);
 
 void rotateLeft(stack_t **, unsigned int);
+void rotateRight(stack_t **, unsigned int);
 
 void cleanFreeAndClose(void);
 void freeStack(stack_t *top);
