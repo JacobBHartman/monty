@@ -98,6 +98,8 @@ void divideStack(stack_t **, unsigned int);
 void multiplyStack(stack_t **, unsigned int);
 void moduloStack(stack_t **, unsigned int);
 
+void rotateLeft(stack_t **, unsigned int);
+
 void cleanFreeAndClose(void);
 void freeStack(stack_t *top);
 void handleError(unsigned int error_code);
