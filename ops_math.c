@@ -78,3 +78,25 @@ void multiplyStack(stack_t **stack, unsigned int line_number)
 	var->top->next->n *= var->top->n;
 	pop(NULL, 0);
 }
+
+/**
+ * moduloStack - computes rest from division of second top by top in the stack
+ * @stack: a pointer to a pointer to the stack
+ * @line_number: the line number at which mod was called
+ *
+ * Return: void
+ */
+void moduloStack(stack_t **stack, unsigned int line_number)
+{
+	(void) stack;
+	(void) line_number;
+
+	if (var->top == NULL || var->top->next == NULL)
+		handleError(1500);
+
+	if (var->top->n == 0)
+		handleError(1300);
+
+	var->top->next->n %= var->top->n;
+	pop(NULL, 0);
+}

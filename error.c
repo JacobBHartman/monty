@@ -39,6 +39,8 @@ void handleError(unsigned int error_code)
 		printf("L%d: division by zero\n", var->line_num);
 	if (error_code == 1400) /* unable to multiply */
 		printf("L%d: can't mul, stack too short\n", var->line_num);
+	if (error_code == 1500) /* unable to modulo */
+		printf("L%d: can't mod, stack too short\n", var->line_num);
 
 	cleanFreeAndClose();
 

@@ -80,6 +80,7 @@ void add(stack_t **, unsigned int);
 void sub(stack_t **, unsigned int);
 void divideStack(stack_t **, unsigned int);
 void multiplyStack(stack_t **, unsigned int);
+void moduloStack(stack_t **, unsigned int);
 
 void cleanFreeAndClose(void);
 void freeStack(stack_t *top);
