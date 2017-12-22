@@ -92,5 +92,10 @@ File | Description
  * function names should usually follow the format of verbObject
  * loop-index variables and function pointers can be one letter
 
+## To-Do
+ * convert all ints to unsigned if you can
+ * review variable and function names
+ * 
+
 ## Author(s)
  * Jacob Hartman - github: `JacobBHartman`
