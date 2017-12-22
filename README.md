@@ -8,11 +8,11 @@
 - [x] push, pall, pint, pop
 - [x] swap, nop
 - [x] add
-- [ ] sub, div, mul, mod
-- [ ] comments
-- [ ] pchar, pstr
-- [ ] rotl, rotr
-- [ ] stack, queue
+- [x] sub, div, mul, mod
+- [x] comments
+- [x] pchar, pstr
+- [x] rotl, rotr
+- [x] stack, queue
 
 ## System and Environment
  * Compiler: `gcc 4.8.4`
@@ -77,13 +77,17 @@ File | Description
 --- | ---
 `dot_m_files` | a directory containing monty files
 `README.md` | self-explanatory
+`clean.c` | frees, fcloses, and frees the stack
+`error.c` | handles errors
 `monty.c` | main program flow and execution
 `monty.h` | header file for the program
 `montyfile.m` | test file used in above usage example
 `ops_adv.c` | relatively advanced operations: `swap`, `nop`
 `ops_basic.c` | relatively basic operations: `push`, `pall`, `pint`, `pop`
 `ops_math.c` | math-based operations: `add`
+`parser.c` | parses the file
 `pick_op.c` | picks which operations will be ran
+`rotate.c` | rotates a stack left and right
 `stack.c` | manipulates the stack
 
 ## styling guide
