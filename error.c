@@ -31,6 +31,8 @@ void handleError(unsigned int error_code)
                 printf("L%d: can't swap, stack too short\n", var->line_num);
         if (error_code == 1000) /* unable to add */
                 printf("L%d: can't add, stack too short\n", var->line_num);
+	if (error_code == 1100) /* unable to subtract */
+		printf("L%d: can't sub, stack too short\n", var->line_num);
 
 	cleanFreeAndClose();
 

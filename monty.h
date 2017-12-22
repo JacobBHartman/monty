@@ -77,6 +77,7 @@ void swap(stack_t **, unsigned int);
 void nop(stack_t **, unsigned int);
 
 void add(stack_t **, unsigned int);
+void sub(stack_t **, unsigned int);
 
 void cleanFreeAndClose(void);
 void freeStack(stack_t *top);
