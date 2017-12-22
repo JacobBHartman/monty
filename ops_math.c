@@ -39,13 +39,13 @@ void sub(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * div - divides the second top element of stack by the top element
+ * divideStack - divides the second top element of stack by the top element
  * @stack: a pointer to a pointer to the stack
  * @line_number: the line number at which div was called
  *
  * Return: void
  */
-void div(stack_t **stack, unsigned int line_number)
+void divideStack(stack_t **stack, unsigned int line_number)
 {
 	(void) stack;
 	(void) line_number;
@@ -56,6 +56,6 @@ void div(stack_t **stack, unsigned int line_number)
 	if (var->top->n == 0)
 		handleError(1300);
 
-	var->top->next->n /= var->top-n;
+	var->top->next->n /= var->top->n;
 	pop(NULL, 0);
 }

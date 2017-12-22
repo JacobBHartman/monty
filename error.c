@@ -37,6 +37,7 @@ void handleError(unsigned int error_code)
 		printf("L%d: can't div, stack too short\n", var->line_num);
 	if (error_code == 1300) /* divide by zero */
 		printf("L%d: division by zero\n", var->line_num);
+
 	cleanFreeAndClose();
 
         exit(EXIT_FAILURE);
