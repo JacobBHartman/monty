@@ -82,9 +82,9 @@ File | Description
 `monty.c` | main program flow and execution
 `monty.h` | header file for the program
 `montyfile.m` | test file used in above usage example
-`ops_adv.c` | relatively advanced operations: `swap`, `nop`
+`ops_adv.c` | relatively advanced operations: `swap`, `nop`, `pchar`, `pstr`
 `ops_basic.c` | relatively basic operations: `push`, `pall`, `pint`, `pop`
-`ops_math.c` | math-based operations: `add`
+`ops_math.c` | math-based operations: `add`, `sub`, `mul`, `div`, `mod`
 `parser.c` | parses the file
 `pick_op.c` | picks which operations will be ran
 `rotate.c` | rotates a stack left and right
