@@ -9,6 +9,7 @@
 void freeStack(stack_t *top)
 {
 	stack_t *temp = top;
+
 	while (temp != NULL)
 	{
 		temp = top->next;
