@@ -42,7 +42,7 @@ void handleError(unsigned int error_code)
 	if (error_code == 1500) /* unable to modulo */
 		printf("L%d: can't mod, stack too short\n", var->line_num);
 	if (error_code == 1600) /* unable to pchar */
-		printf("L%d: cant pchar, stack too short\n", var->line_num);
+		printf("L%d: can't pchar, stack too short\n", var->line_num);
 	if (error_code == 1700) /* value out of ASCII range for pchar */
 		printf("L%d: can't pchar, value out of range\n", var->line_num);
 
