@@ -11,7 +11,7 @@ var_t *var;
  */
 int main(int argc, char *argv[])
 {
-	var_t init = {NULL, NULL, 0, NULL, 0, NULL, NULL};
+	var_t init = {NULL, NULL, 0, NULL, 0, NULL, NULL, NULL};
 
 	var = &init;
 	var->file_name = argv[1];

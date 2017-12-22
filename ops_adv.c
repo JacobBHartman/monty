@@ -42,3 +42,24 @@ void nop(stack_t **stack, unsigned int line_number)
 	(void) stack;
 	(void) line_number;
 }
+
+/**
+ * pchar - prints the char at the top of the stack
+ * @stack: a pointer to a pointer to a doubly linked list (stack)
+ * @line_number: the line number at which pchar was called
+ *
+ * Return: void
+ */
+void pchar(stack_t **stack, unsigned int line_number)
+{
+	(void) stack;
+	(void) line_number;
+
+	if (var->top == NULL)
+		handleError(1600);
+
+	if (var->top->n > 127)
+		handleError(1700);
+
+	printf("%c\n", '\0' + var->top->n);
+}

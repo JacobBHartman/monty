@@ -10,7 +10,6 @@ void parseMontyFile(void)
 	int i;
         size_t buffer_size;
         char *delimiters = "\n \t";
-        char *arg_one = NULL;
         void (*f)(stack_t **, unsigned int);
 
         buffer_size = 0; /* read and parse the file */
@@ -31,13 +30,14 @@ void parseMontyFile(void)
 
                 if (strcmp(var->opcode, "push") == 0)
                 {
-                        arg_one = strtok(NULL, delimiters);
-                        if (arg_one == NULL)
+                        var->arg_one = strtok(NULL, delimiters);
+                        if (var->arg_one == NULL)
                                 handleError(500);
-                        for (i = 0; arg_one[i] != '\0'; i++)
-				if (isdigit(arg_one[i]) == 0 && arg_one[i] != '-')
-                                        handleError(500);
-                        var->daata = atoi(arg_one);
+                        for (i = 0; var->arg_one[i] != '\0'; i++)
+				if (isdigit(var->arg_one[i]) == 0)
+					if (var->arg_one[i] != '-')
+						handleError(500);
+                        var->daata = atoi(var->arg_one);
                 }
                 f(&var->top, var->line_num);
 	}

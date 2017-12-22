@@ -56,6 +56,7 @@ typedef struct variable_s
 	int daata;
 	stack_t *top;
 	char *buffer;
+	char *arg_one;
 } var_t;
 
 extern var_t *var;
@@ -75,6 +76,7 @@ void pop(stack_t **, unsigned int);
 
 void swap(stack_t **, unsigned int);
 void nop(stack_t **, unsigned int);
+void pchar(stack_t **, unsigned int);
 
 void add(stack_t **, unsigned int);
 void sub(stack_t **, unsigned int);

@@ -20,6 +20,7 @@ void (*op(char *opcode))(stack_t **, unsigned int)
 		{"div", divideStack},
 		{"mul", multiplyStack},
 		{"mod", moduloStack},
+		{"pchar", pchar},
                 {NULL, NULL}
         };
 	int i;
