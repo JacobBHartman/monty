@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * free_stack - frees a doubly linked list (stack)
+ * freeStack - frees a doubly linked list (stack)
  * @top: a pointer to a doubly linked list (stack)
  *
  * Return: void
