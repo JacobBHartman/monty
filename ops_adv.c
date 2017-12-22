@@ -58,7 +58,7 @@ void pchar(stack_t **stack, unsigned int line_number)
 	if (var->top == NULL)
 		handleError(1600);
 
-	if (var->top->n > 127)
+	if (var->top->n > 127 || var->top->n < 1)
 		handleError(1700);
 
 	printf("%c\n", '\0' + var->top->n);
