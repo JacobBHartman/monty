@@ -64,3 +64,29 @@ void pchar(stack_t **stack, unsigned int line_number)
 	putchar(var->top->n);
 	putchar('\n');
 }
+
+/**
+ * pstr - prints the string starting at the top of the stack
+ * @stack: a pointer to a pointer to a doubly linked list (stack)
+ * @line_number: the line number at which pstr was called
+ *
+ * Return: void
+ */
+void pstr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *traverse = var->top;
+
+
+	(void) stack;
+	(void) line_number;
+
+	while (traverse != NULL && traverse->n != 0)
+	{
+		if (traverse->n < 128 && traverse->n > 0)
+			putchar(traverse->n);
+		else
+			break;
+		traverse = traverse->next;
+	}
+	putchar('\n');
+}

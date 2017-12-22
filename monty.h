@@ -77,6 +77,7 @@ void pop(stack_t **, unsigned int);
 void swap(stack_t **, unsigned int);
 void nop(stack_t **, unsigned int);
 void pchar(stack_t **, unsigned int);
+void pstr(stack_t **, unsigned int);
 
 void add(stack_t **, unsigned int);
 void sub(stack_t **, unsigned int);
