@@ -22,7 +22,7 @@ void parseMontyFile(void)
                 var->opcode = strtok(var->buffer, delimiters);
 
                 /* check for only spaces or newline */
-		if (var->opcode == NULL)
+		if (var->opcode == NULL || var->opcode[0] == '#')
                         continue;
 
                 f = op(var->opcode);
