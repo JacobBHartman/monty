@@ -95,7 +95,6 @@ File | Description
 ## To-Do
  * convert all ints to unsigned if you can
  * review variable and function names
- * 
 
 ## Author(s)
  * Jacob Hartman - github: `JacobBHartman`
