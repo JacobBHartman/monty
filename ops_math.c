@@ -59,3 +59,22 @@ void divideStack(stack_t **stack, unsigned int line_number)
 	var->top->next->n /= var->top->n;
 	pop(NULL, 0);
 }
+
+/**
+ * multiplyStack - multiples the second top element by the top elemtent on stak
+ * @stack: a pointer to a pointer to the stack
+ * @line_number: the line number at which mul was called
+ *
+ * Return: void
+ */
+void multiplyStack(stack_t **stack, unsigned int line_number)
+{
+	(void) stack;
+	(void) line_number;
+
+	if (var->top == NULL || var->top->next == NULL)
+		handleError(1400);
+
+	var->top->next->n *= var->top->n;
+	pop(NULL, 0);
+}

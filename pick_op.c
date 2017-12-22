@@ -18,6 +18,7 @@ void (*op(char *opcode))(stack_t **, unsigned int)
 		{"nop", nop},
 		{"sub", sub},
 		{"div", divideStack},
+		{"mul", multiplyStack},
                 {NULL, NULL}
         };
 	int i;
