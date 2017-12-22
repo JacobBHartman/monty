@@ -2,7 +2,7 @@
 #define _MONTY_H_
 
 /****************
- |  DIRECTIVES  |
+ *  DIRECTIVES  *
  ****************/
 #include <stdlib.h>
 #include <stdio.h>
@@ -11,7 +11,7 @@
 
 
 /****************
- |  STRUCTURES  |
+ *  STRUCTURES  *
  ****************/
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -24,9 +24,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -39,14 +39,27 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 
 /**********************
- |  GLOBAL VARIABLES  |
+ *  GLOBAL VARIABLES  *
  **********************/
+/**
+ * struct variable_s - a struct that will hold globally accessible variables
+ * @file_name: name of the file opened
+ * @file_address: address of the file
+ * @line_num: the line number being read currently
+ * @opcode: the operation code that tells monty what to do
+ * @daata: the data being manipulated by the operation
+ * @top: a stack (doubly linked list)
+ * @buffer: a buffer that is being written to from each line in the file
+ * @arg_one: the argument at index 1 (2nd argument, or the 1st after ./monty)
+ *
+ * Description: a structure that will hold global variables
+ */
 typedef struct variable_s
 {
 	char *file_name;
@@ -63,7 +76,7 @@ extern var_t *var;
 
 
 /*************************
- |  FUNCTION PROTOTYPES  |
+ *  FUNCTION PROTOTYPES  *
  *************************/
 void parseMontyFile(void);
 

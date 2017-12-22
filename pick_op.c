@@ -8,9 +8,9 @@
  */
 void (*op(char *opcode))(stack_t **, unsigned int)
 {
-        instruction_t instructions[] = {
-                {"push", push},
-                {"pall", pall},
+	instruction_t instructions[] = {
+		{"push", push},
+		{"pall", pall},
 		{"pint", pint},
 		{"pop", pop},
 		{"swap", swap},
@@ -22,12 +22,12 @@ void (*op(char *opcode))(stack_t **, unsigned int)
 		{"mod", moduloStack},
 		{"pchar", pchar},
 		{"pstr", pstr},
-                {NULL, NULL}
-        };
+		{NULL, NULL}
+	};
 	int i;
 
-        for (i = 0; instructions[i].opcode != NULL; i++)
-                if (strcmp(instructions[i].opcode, opcode) == 0)
-                        return (instructions[i].f);
-        return (instructions[i].f);
+	for (i = 0; instructions[i].opcode != NULL; i++)
+		if (strcmp(instructions[i].opcode, opcode) == 0)
+			return (instructions[i].f);
+	return (instructions[i].f);
 }
