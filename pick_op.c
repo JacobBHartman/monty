@@ -22,6 +22,7 @@ void (*op(char *opcode))(stack_t **, unsigned int)
 		{"mod", moduloStack},
 		{"pchar", pchar},
 		{"pstr", pstr},
+		{"rotl", rotateLeft},
 		{NULL, NULL}
 	};
 	int i;
